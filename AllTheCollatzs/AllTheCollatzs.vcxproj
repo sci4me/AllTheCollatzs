@@ -149,10 +149,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="barrier.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="barrier.hpp" />
+    <ClInclude Include="channel.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
