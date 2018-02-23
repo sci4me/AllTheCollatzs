@@ -25,6 +25,10 @@ public:
     }
 
     void put(T& i) {
+        put(std::move(i));
+    }
+
+    void put(T&& i) {
         std::unique_lock<std::mutex> lock(_mutex);
         if (_closed)
             throw std::logic_error("put to closed channel");
