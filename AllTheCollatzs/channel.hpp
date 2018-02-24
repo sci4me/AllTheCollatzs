@@ -24,11 +24,11 @@ public:
         return _closed;
     }
 
-    void put(T const& i) {
-        put(std::move(i));
+    void send(T const& i) {
+        send(std::move(i));
     }
 
-    void put(T const&& i) {
+    void send(T const&& i) {
         std::unique_lock<std::mutex> lock(_mutex);
         if (_closed)
             throw std::logic_error("put to closed channel");
@@ -36,7 +36,7 @@ public:
         _cv.notify_one();
     }
 
-    bool get(T& out, bool wait = true) {
+    bool recv(T& out, bool wait = true) {
         std::unique_lock<std::mutex> lock(_mutex);
         if (wait) _cv.wait(lock, [&] { return _closed || !_queue.empty(); });
         if (_queue.empty()) return false;
