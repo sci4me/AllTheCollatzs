@@ -24,11 +24,11 @@ public:
         return _closed;
     }
 
-    void put(T& i) {
+    void put(T const& i) {
         put(std::move(i));
     }
 
-    void put(T&& i) {
+    void put(T const&& i) {
         std::unique_lock<std::mutex> lock(_mutex);
         if (_closed)
             throw std::logic_error("put to closed channel");
